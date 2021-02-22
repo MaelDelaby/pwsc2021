@@ -2,7 +2,7 @@ import React from 'react'
 
 
 
-const List=()=>{
+const Lists=()=>{
 
 
     return (
@@ -12,4 +12,4 @@ const List=()=>{
 
     )
 }
-export default List
+export default Lists
