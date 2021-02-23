@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --watch api server.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^5.11.14"
+    "got": "^11.8.1",
+    "mongoose": "^5.11.14",
+    "nodemon": "^2.0.7"
   }
 }
