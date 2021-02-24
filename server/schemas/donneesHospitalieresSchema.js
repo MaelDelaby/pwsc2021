@@ -10,19 +10,19 @@ const donneesHospitalieresSchema = new mongoose.Schema({
     required: [true, 'Jour is required']
   },
   incidHosp: {
-    type: String,
+    type: Number,
     required: [true, 'incidHosp is required']
   },
   incidRes: {
-    type: String,
+    type: Number,
     required: [true, 'incidRes is required']
   },
   incidDc: {
-    type: String,
+    type: Number,
     required: [true, 'incidDc is required']
   },
   incidRad: {
-    type: String,
+    type: Number,
     required: [true, 'incidRad is required']
   }
 })
