@@ -2,6 +2,11 @@ import React, { useState, useContext } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
+import {Switch, Route,Link,BrowserRouter} from 'react-router-dom'
+import Map from '../pages/Map'
+import Graph from '../pages/Graph'
+import Lists from '../pages/Lists'
+
 import {
   Drawer,
   AppBar,
@@ -14,10 +19,10 @@ import {
   ListItemIcon,
   ListItemText,
   FormControlLabel,
-  Switch,
   Grid
 } from '@material-ui/core';
 
+import SwitchUI from '@material-ui/core/Switch'
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -116,6 +121,7 @@ export default function AppDrawer() {
   }
 
   return (
+    <BrowserRouter>
     <div className={classes.root}>
       <AppBar
         position="fixed"
@@ -149,7 +155,7 @@ export default function AppDrawer() {
               
             <Grid item>
               <FormControlLabel
-                control={<Switch checked={isDark} onChange={handleThemeChange} />}
+                control={<SwitchUI checked={isDark} onChange={handleThemeChange} />}
                 label="Change theme"
               />
             </Grid>
@@ -173,7 +179,7 @@ export default function AppDrawer() {
         <Divider />
         <List>
           {['List', 'Graph', 'Map'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button component={Link} to={"/" + text.toLowerCase()} key={text} >
               <ListItemIcon><ArrowForwardIcon /></ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -186,13 +192,14 @@ export default function AppDrawer() {
         })}
       >
         <div className={classes.drawerHeader} />
-        <Typography paragraph>
-          Lorem ipsum
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris
-        </Typography>
+        <Switch>
+            <Route exact path="/map" component={Map} />
+            <Route exact path="/graph" component={Graph} />
+            <Route exact path="/list" component={Lists} />
+        </Switch>
+        <h3>Footer</h3>
       </main>
     </div>
+    </BrowserRouter>
   );
 }
