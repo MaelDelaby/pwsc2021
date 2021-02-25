@@ -1,8 +1,8 @@
 const express = require('express');
 
 const publicRouter = express.Router();
-const datasRoute = require('./routes/dataParser'); 
+const datasRoute = require('./routes/covidData'); 
 
-publicRouter.use('/dataparser', datasRoute);
+publicRouter.use('/coviddata', datasRoute);
 
 module.exports = publicRouter;
