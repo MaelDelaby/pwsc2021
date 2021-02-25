@@ -1,15 +1,11 @@
 import React from 'react'
 
-
-
-const Lists=()=>{
-
+const Lists = () => {
 
     return (
         <>
-        <p>List page</p>  
+            <p>{process.env.REACT_APP_API_URL}</p>  
         </>
-
     )
 }
 export default Lists
