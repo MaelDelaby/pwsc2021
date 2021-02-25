@@ -48,10 +48,9 @@ const columnsDonneesHospitalieres = [
 const Lists = () => {
   const [covidData, setCovidData] = useState([]);
   const [columns, setColumnsData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
-    setLoading(true);
     const result = await axios.get(getCovidDataUrl);
     setCovidData(result.data);
     setLoading(false);
@@ -60,12 +59,11 @@ const Lists = () => {
   useEffect(() => {
     setColumnsData(columnsDonneesHospitalieres); // TODO : quand les filtres via url seront finis, choisir dynamiquement les valeurs à afficher
     fetchData();
-    setLoading(false);
   }, []);
 
   return (
       <div style={{ height: 800, width: '100%' }}>
-          <DataGrid rows={covidData} columns={columns} pageSize={100} checkboxSelection />
+          <DataGrid loading={loading} rows={covidData} columns={columns} pageSize={100} checkboxSelection />
       </div>
   )
 }
