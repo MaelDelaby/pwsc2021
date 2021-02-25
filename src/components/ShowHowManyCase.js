@@ -44,7 +44,11 @@ export default function ShowHowManyCase() {
     return (
         <div className={classes.root}>
             <p>
-                Nombre de cas confirmés en france : {nbOfCase}
+                {
+                    nbOfCase > 0 ?
+                        'Nombre de cas confirmés en france : ' + nbOfCase :
+                        'Requete à l\'API coronavirusapi-france.now.sh impossible'
+                }
             </p>
         </div>
     );
