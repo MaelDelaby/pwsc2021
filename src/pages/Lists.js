@@ -6,8 +6,8 @@ import { DataGrid } from '@material-ui/data-grid';
 const apiUrl = process.env.REACT_APP_API_URL;
 const getCovidDataUrl = apiUrl + 'coviddata?collection=DonneesHospitalieres';
 
-const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
+const columnsDonneesHospitalieres = [
+    { field: 'id', headerName: 'ID', width: 100 },
     {
       field: 'dep',
       headerName: 'Departement',
@@ -47,6 +47,7 @@ const columns = [
 
 const Lists = () => {
   const [covidData, setCovidData] = useState([]);
+  const [columns, setColumnsData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
@@ -57,6 +58,7 @@ const Lists = () => {
   };
 
   useEffect(() => {
+    setColumnsData(columnsDonneesHospitalieres); // TODO : quand les filtres via url seront finis, choisir dynamiquement les valeurs à afficher
     fetchData();
     setLoading(false);
   }, []);
