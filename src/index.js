@@ -3,16 +3,15 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import theme from './theme';
+import CustomThemeProvider from './themes/CustomThemeProvider'
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
+    <CustomThemeProvider>
         <CssBaseline />
         <App />
-    </ThemeProvider>
+    </CustomThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

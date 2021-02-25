@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const donneesHospitalieresSchema = new mongoose.Schema({
+  id: {
+    type: Number,
+    required: [true, 'Id is required']
+  },
   dep: {
     type: Number,
     required: [true, 'Departement is required']
