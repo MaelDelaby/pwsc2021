@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
@@ -9,7 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
 import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
+
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
@@ -21,15 +21,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import FormLabel from '@material-ui/core/FormLabel'
 
-function Copyright() {
-	return (
-		<Typography variant="body2" color="textSecondary" align="center">
-			{'Copyright © Polamis '}
-			{new Date().getFullYear()}
-			{'.'}
-		</Typography>
-	)
-}
+
 function countryToFlag(isoCode) {
 	return typeof String.fromCodePoint !== 'undefined'
 		? isoCode
@@ -73,10 +65,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
 	const classes = useStyles()
-	// const [gender, setGender] = useState('female')
-	// const handleChange = (event) => {
-	// 	setGender(event.target.value)
-	// }
+	
     const SignupSchema = Yup.object().shape({
 		firstName: Yup.string()
 			.min(2, 'Too Short!')
@@ -347,9 +336,7 @@ export default function SignUp() {
 					</Grid>
 				</form>
 			</div>
-			<Box mt={5}>
-				<Copyright />
-			</Box>
+			
 		</Container>
 	)
 }
