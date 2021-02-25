@@ -26,13 +26,14 @@ const insertData = async (collection, brutData) => {
         for(let i=1; i<brutDataTab.length - 1; i++) {
             let line = brutDataTab[i].split(';');
 
+            let id = i-1;
             let dep = parseInt(line[0].replace(/['"]+/g, ''));
             let jour = line[1];
             let incidHosp = line[2];
             let incidRes = line[3];
             let incidDc = line[4];
             let incidRad = line[5];
-            let parsedLine = '{ "dep": ' + dep + ', "jour": "' + jour + '", "incidHosp": ' + incidHosp + ', "incidRes": ' + incidRes + ', "incidDc": ' + incidDc + ', "incidRad": ' + incidRad + ' }';
+            let parsedLine = '{ "id": ' + id + ', "dep": ' + dep + ', "jour": "' + jour + '", "incidHosp": ' + incidHosp + ', "incidRes": ' + incidRes + ', "incidDc": ' + incidDc + ', "incidRad": ' + incidRad + ' }';
             
             insertTab.push(JSON.parse(parsedLine));
         }
