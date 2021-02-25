@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
@@ -12,13 +12,18 @@ import {
   IconButton,
   ListItem,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  FormControlLabel,
+  Switch,
+  Grid
 } from '@material-ui/core';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+
+import { CustomThemeContext } from '../themes/CustomThemeProvider'
 
 const drawerWidth = 240;
 
@@ -32,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+  },
+  FormControlLabel: {
+
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -84,6 +92,8 @@ export default function AppDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+  const { currentTheme, setTheme } = useContext(CustomThemeContext)
+  const isDark = Boolean(currentTheme === 'dark')
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -92,6 +102,18 @@ export default function AppDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  
+  const handleThemeChange = (event) => {
+    const { checked } = event.target
+    console.log(event.target)
+    if (checked) {
+      setTheme('dark')
+      localStorage.setItem('appTheme', 'dark')
+    } else {
+      setTheme('normal')
+      localStorage.setItem('appTheme', 'normal')
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -102,18 +124,36 @@ export default function AppDrawer() {
         })}
       >
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
+          <Grid
+            justify="space-between"
+            container 
+            spacing={24}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Web Project
-          </Typography>
+            <Grid item>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                className={clsx(classes.menuButton, open && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Grid>
+
+            <Grid item>
+              <Typography variant="h6" noWrap>
+                Web Project
+              </Typography>
+            </Grid>
+              
+            <Grid item>
+              <FormControlLabel
+                control={<Switch checked={isDark} onChange={handleThemeChange} />}
+                label="Change theme"
+              />
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
       <Drawer
