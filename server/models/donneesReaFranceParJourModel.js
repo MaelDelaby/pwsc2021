@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const donneesReaFranceParJourModel = new mongoose.Schema({
+const donneesReaFranceParJourSchema = new mongoose.Schema({
   id: {
     type: Number,
     required: [true, 'Id is required']
@@ -15,7 +15,7 @@ const donneesReaFranceParJourModel = new mongoose.Schema({
   }
 })
 
-let ReaFranceParJourModel = mongoose.model('ReaFranceParJour', donneesReaFranceParJourModel, 'ReaFranceParJour');
+let ReaFranceParJourModel = mongoose.model('ReaFranceParJour', donneesReaFranceParJourSchema, 'ReaFranceParJour');
 
 
 module.exports=ReaFranceParJourModel;

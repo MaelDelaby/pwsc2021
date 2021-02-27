@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const donneesTauxDincidenceQuotDepModel = new mongoose.Schema({
+const donneesTauxDincidenceQuotDepSchema = new mongoose.Schema({
   dep: {
     type: Number,
     required: [true, 'Departement is required']
@@ -23,6 +23,6 @@ const donneesTauxDincidenceQuotDepModel = new mongoose.Schema({
   }
 })
 
-let TauxDincidenceQuotDepModel = mongoose.model('TauxDincidenceQuotDep', donneesTauxDincidenceQuotDepModel, 'TauxDincidenceQuotDep');
+let TauxDincidenceQuotDepModel = mongoose.model('TauxDincidenceQuotDep', donneesTauxDincidenceQuotDepSchema, 'TauxDincidenceQuotDep');
 
 module.exports=TauxDincidenceQuotDepModel;
