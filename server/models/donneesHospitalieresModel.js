@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const donneesHospitalieresSchema = new mongoose.Schema({
+const donneesHospitalieresModel = new mongoose.Schema({
   id: {
     type: Number,
     required: [true, 'Id is required']
@@ -31,4 +31,7 @@ const donneesHospitalieresSchema = new mongoose.Schema({
   }
 })
 
-module.exports = donneesHospitalieresSchema
+
+let DonneesHospitalieresModel = mongoose.model('DonneesHospitalieres', donneesHospitalieresModel, 'DonneesHospitalieres');
+
+module.exports=DonneesHospitalieresModel;

@@ -1,16 +1,10 @@
 const got = require('got');
 const SPFUrl = "https://www.data.gouv.fr/fr/organizations/sante-publique-france/datasets-resources.csv";
 
-const mongoose = require('mongoose')
-
-const donneesHospitalieresSchema = require('../schemas/donneesHospitalieresSchema');
-const DonneesHospitalieres = mongoose.model('DonneesHospitalieres', donneesHospitalieresSchema, 'DonneesHospitalieres');
-
-const donneesReaFranceParJour = require('../schemas/donneesReaFranceParJourSchema');
-const ReaFranceParJour = mongoose.model('ReaFranceParJour', donneesReaFranceParJour, 'ReaFranceParJour');
-
-const donneesTauxDincidenceQuotDep = require('../schemas/donneesTauxDincidenceQuotDepSchema');
-const TauxDincidenceQuotDep = mongoose.model('TauxDincidenceQuotDep', donneesTauxDincidenceQuotDep, 'TauxDincidenceQuotDep');
+//Model for the MongoDB Collections
+const DonneesHospitalieres = require('../models/donneesHospitalieresModel');
+const ReaFranceParJour = require('../models/donneesReaFranceParJourModel');
+const TauxDincidenceQuotDep= require('../models/donneesTauxDincidenceQuotDepModel');
 
 const regNewHospitalsDataCovid = /static\.data\.gouv\.fr.*donnees-hospitalieres-nouveaux-covid19/
 const regIncidenceRateQuotFraDataCovid = /static\.data\.gouv\.fr.*sp-pe-tb-quot-dep/
