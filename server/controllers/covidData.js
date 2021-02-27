@@ -173,13 +173,35 @@ const removeAllData = async (collection) => {
 
 const getAllData = async (req) => {
     const collection = req.query.collection;
-    let data;
+    const numberOfPreviousDays = req.query.day;
+    
+    let data = [];
     if(collection === "DonneesHospitalieres") {
         data = await DonneesHospitalieres.find();
     } else if(collection === "ReaFranceParJour") {
         data = await ReaFranceParJour.find();
     } else if(collection === "TauxDincidenceQuotDep") {
-        data = await TauxDincidenceQuotDep.find();
+        let allData = await TauxDincidenceQuotDep.find();
+        if (numberOfPreviousDays == 1) {
+            const lastDate = allData[allData.length-1].jour;
+            allData = await TauxDincidenceQuotDep.find({"jour":lastDate});
+            let currDep = allData[0].dep;
+            let depPValue = 0;
+            for (let i=0; i<allData.length; i++) {
+                if(currDep === allData[i].dep) {
+                    depPValue = depPValue + parseInt(allData[i].P);
+                } else {
+                    let line = '{ "dep": ' + currDep + ', "P": ' + depPValue + ' }';
+                    data.push(JSON.parse(line));
+                    depPValue = 0;
+                    currDep = allData[i].dep;
+                }
+            }
+            
+        } else {
+            console.log('All data')
+            data = allData;
+        }
     }
     return data;
 }

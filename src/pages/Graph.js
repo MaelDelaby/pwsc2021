@@ -6,10 +6,6 @@ import axios from 'axios';
 const apiUrl = process.env.REACT_APP_API_URL;
 const getCovidDataUrl = apiUrl + 'coviddata?collection=ReaFranceParJour';
 
-function createData(time, amount) {
-  return { time, amount };
-}
-
 export default function Chart() {
   const [covidData, setCovidData] = useState([]);
   const [loading, setLoading] = useState(true);
