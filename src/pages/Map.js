@@ -66,7 +66,7 @@ const Map = () => {
             Rouge : Incidence supérieure à {critP}
           </Typography>
           <Typography>
-            { locationData === '' ? <Button onClick={getLocation}>Click me</Button> : locationData }
+            { locationData === '' ? <Button onClick={getLocation}>Récupérer l'information pour mon département</Button> : locationData }
           </Typography>
             { loading ? <CircularProgress /> : 
                 <France color="#556cd6" highlightColor="#c80000" departements={depSelected} />
