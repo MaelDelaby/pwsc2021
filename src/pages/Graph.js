@@ -29,7 +29,7 @@ export default function Chart() {
 
   return (
     <>
-      { loading ? 'oui' : 
+      { loading ? 'Loading' : 
         <LineChart
           data={covidData}
           width={850} height={300}
