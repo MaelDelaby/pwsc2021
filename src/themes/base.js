@@ -1,8 +1,8 @@
-import normal from './normal'
+import light from './light'
 import dark from './dark'
 
 const themes = {
-  normal,
+  light,
   dark,
 }
 

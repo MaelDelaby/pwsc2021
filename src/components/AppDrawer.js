@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
@@ -6,6 +6,7 @@ import {Switch, Route,Link,BrowserRouter} from 'react-router-dom'
 import Map from '../pages/Map'
 import Graph from '../pages/Graph'
 import Lists from '../pages/Lists'
+import ThemeModal from './ThemeModal'
 
 import {
   Drawer,
@@ -18,17 +19,14 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  FormControlLabel,
   Grid
 } from '@material-ui/core';
 
-import SwitchUI from '@material-ui/core/Switch'
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
-import { CustomThemeContext } from '../themes/CustomThemeProvider'
 
 const drawerWidth = 240;
 
@@ -97,8 +95,6 @@ export default function AppDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const { currentTheme, setTheme } = useContext(CustomThemeContext)
-  const isDark = Boolean(currentTheme === 'dark')
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -107,18 +103,6 @@ export default function AppDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  
-  const handleThemeChange = (event) => {
-    const { checked } = event.target
-    console.log(event.target)
-    if (checked) {
-      setTheme('dark')
-      localStorage.setItem('appTheme', 'dark')
-    } else {
-      setTheme('normal')
-      localStorage.setItem('appTheme', 'normal')
-    }
-  }
 
   return (
     <BrowserRouter>
@@ -154,10 +138,7 @@ export default function AppDrawer() {
             </Grid>
               
             <Grid item>
-              <FormControlLabel
-                control={<SwitchUI checked={isDark} onChange={handleThemeChange} />}
-                label="Change theme"
-              />
+              <ThemeModal />
             </Grid>
           </Grid>
         </Toolbar>
