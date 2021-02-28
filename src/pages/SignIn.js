@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFormik } from 'formik'
-
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = () => {
 	const classes = useStyles()
 	const [open, setOpen] = React.useState(false)
-
+	const history=useHistory()
 	const handleClose = (event, reason) => {
 		if (reason === 'clickaway') {
 			return
@@ -56,24 +56,33 @@ const SignIn = () => {
 	}
 	const formik = useFormik({
 		initialValues: {
-			userName: '',
+			email: '',
 			passWord: '',
 		},
 		onSubmit: async (values) => {
-			const { userName, passWord } = values
+			
+			const { email, passWord } = values
 			await axios
-				.post('link', {
-					userName,
+				.post('http://localhost:4001/auth/signin', {
+					email,
 					passWord,
 				})
 				.then((response) => {
+					
+					if(response.data.success){
+						console.log('sss '+ response)
 					const { token } = response.data
 					localStorage.setItem('user', JSON.stringify({ token }))
+					history.push(history.location.state?.from.pathname || '/')
+				}else{
+					alert('incorrect indentifiants')
+				}
 					
 				})
 				.catch((err) => {
 					setOpen(true)
 				})
+				
 		},
 	})
 	return (
@@ -101,13 +110,13 @@ const SignIn = () => {
 						margin="normal"
 						required
 						fullWidth
-						id="userName"
+						id="email"
 						label="Email Address"
-						name="userName"
+						name="email"
 						autoComplete="email"
 						autoFocus
 						onChange={formik.handleChange}
-						value={formik.values.userName}
+						value={formik.values.email}
 					/>
 					<TextField
 						variant="outlined"
@@ -142,7 +151,7 @@ const SignIn = () => {
 							</Link>
 						</Grid>
 						<Grid item>
-							<Link href="#" variant="body2">
+							<Link href="/signUp" variant="body2">
 								{"Don't have an account? Sign Up"}
 							</Link>
 						</Grid>

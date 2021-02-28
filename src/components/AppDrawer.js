@@ -3,8 +3,10 @@ import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import {Switch, Route,Link,BrowserRouter} from 'react-router-dom'
+import ShowHowManyCase from '../components/ShowHowManyCase';
 import Map from '../pages/Map'
 import Graph from '../pages/Graph'
+import ProtectedRoute from '../ProtectedRoutes'
 import Lists from '../pages/Lists'
 import ThemeModal from './ThemeModal'
 
@@ -174,10 +176,11 @@ export default function AppDrawer() {
       >
         <div className={classes.drawerHeader} />
         <Switch>
-            <Route exact path="/map" component={Map} />
-            <Route exact path="/graph" component={Graph} />
-            <Route exact path="/list" component={Lists} />
+            <ProtectedRoute exact path="/map" component={Map} />
+            <ProtectedRoute exact path="/graph" component={Graph} />
+            <ProtectedRoute exact path="/list" component={Lists} />
         </Switch>
+        <ShowHowManyCase/>
       </main>
     </div>
     </BrowserRouter>
