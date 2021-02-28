@@ -197,7 +197,6 @@ export default function AppDrawer() {
             <Route exact path="/graph" component={Graph} />
             <Route exact path="/list" component={Lists} />
         </Switch>
-        <h3>Footer</h3>
       </main>
     </div>
     </BrowserRouter>
