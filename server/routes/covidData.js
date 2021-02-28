@@ -1,12 +1,14 @@
 const express = require('express');
 
-const covidDataController = require('../controllers/covidData');
+
+const getCovidDateController = require('../controllers/getCovidData');
+const fetchCovidDateController = require('../controllers/fetchCovidData');
 
 const covidDataRouter = express.Router();
 
 covidDataRouter.get('/', async (req, res, next) => {
     try {
-        res.send(await covidDataController.getAllData(req));
+        res.send(await getCovidDateController.getAllData(req));
     } catch (err) {
         next(err);
     }
@@ -14,10 +16,35 @@ covidDataRouter.get('/', async (req, res, next) => {
 
 covidDataRouter.get('/fetchData', async (req, res, next) => {
     try {
-        res.send(await covidDataController.fetchBrutData(req));
+        res.send(await fetchCovidDateController.fetchBrutData(req));
     } catch (err) {
         next(err);
     }
 });
+
+covidDataRouter.get('/getHospitalieresData',async (req, res, next) => {
+    try {
+        res.send(await getCovidDateController.getHospitalieresData(req));
+    } catch (err) {
+        next(err);
+    }
+});
+
+covidDataRouter.get('/getReaFranceParJourData',async (req, res, next) => {
+    try {
+        res.send(await getCovidDateController.getReaFranceParJourData(req));
+    } catch (err) {
+        next(err);
+    }
+});
+
+covidDataRouter.get('/getTauxDincidenceQuotDepData',async (req, res, next) => {
+    try {
+        res.send(await getCovidDateController.getTauxDincidenceQuotDepData(req));
+    } catch (err) {
+        next(err);
+    }
+});
+
 
 module.exports = covidDataRouter;
