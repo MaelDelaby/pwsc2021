@@ -11,7 +11,7 @@ To launch the project :
 ## Login / Password
 Login :admin@admin.com
 Password: 123456789
-and u can also create a new account on localhost:3000/signup
+and you can also create a new account on localhost:3000/signup
 ## Architecture
 
 Our project is based on the MaterialUI default theme.
