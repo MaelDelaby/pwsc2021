@@ -57,7 +57,7 @@ const Lists = () => {
   };
 
   useEffect(() => {
-    setColumnsData(columnsDonneesHospitalieres); // TODO : quand les filtres via url seront finis, choisir dynamiquement les valeurs à afficher
+    setColumnsData(columnsDonneesHospitalieres);
     fetchData();
   }, []);
 

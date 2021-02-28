@@ -47,13 +47,10 @@ const Map = () => {
       
       let line = '';
       let i=0;
-      console.log(depData.length)
       while (i<depData.length && line == '') {
         console.log(i)
         if(depData[i].dep === parseInt(departmentInfo.data[0].departement.code)) {
           line = "Votre département : " + departmentInfo.data[0].departement.nom + ' (' + departmentInfo.data[0].departement.code + ') a pour taux d\'incidence P : ' + depData[i].P;
-          
-      console.log(line)
         }
         i++;
       }
