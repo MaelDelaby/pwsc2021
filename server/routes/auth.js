@@ -16,7 +16,6 @@ authRouter.post('/signUp', async (req, res, next) => {
 
 authRouter.post('/signIn', async (req, res, next) => {
     try {
-        console.log(req.body);
         res.json(await authController.signIn(req,res));
     } catch (err) {
         next(err);

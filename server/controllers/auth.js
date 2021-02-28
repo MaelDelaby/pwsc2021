@@ -1,5 +1,5 @@
 const User=require('../models/userModel');
-
+const jwt = require('jsonwebtoken');
 
 const signUp=async(req,res)=>{
       
@@ -35,17 +35,19 @@ const signUp=async(req,res)=>{
 const signIn = async(req,res)=>{
 
     let userResult = await User.findOne({email:req.body.email}).exec();
-    console.log(req.body);
-    // console.log(userResult);
+    const accessTokenSecret = "webproject"
+    let email =req.body.email;
     if(userResult != undefined) {
 
         if (req.body.passWord == userResult.passWord) {
-            let jwt = new JwtUtil(userResult.email.toString());
-            let token = jwt.generateToken();
+            const accessToken = jwt.sign({ email : userResult.email} , accessTokenSecret);
+
+
             return {
                 status: 200,
+                success:true,
                 res_msg: "Login Successfully!",
-                token: token,
+                token: accessToken
 
             };
         } else{
