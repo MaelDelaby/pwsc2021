@@ -68,11 +68,12 @@ const SignIn = () => {
 					passWord,
 				})
 				.then((response) => {
-					if(response.success){
+					
+					if(response.data.success){
 						console.log('sss '+ response)
 					const { token } = response.data
 					localStorage.setItem('user', JSON.stringify({ token }))
-					history.push(history.location.state?.from.pathname || '/home')
+					history.push(history.location.state?.from.pathname || '/')
 				}else{
 					alert('incorrect indentifiants')
 				}

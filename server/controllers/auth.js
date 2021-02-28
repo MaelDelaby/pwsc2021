@@ -36,7 +36,7 @@ const signIn = async(req,res)=>{
 
     let userResult = await User.findOne({email:req.body.email}).exec();
     const accessTokenSecret = "webproject"
-    let email =req.body.email;
+    
     if(userResult != undefined) {
 
         if (req.body.passWord == userResult.passWord) {
