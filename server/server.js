@@ -7,7 +7,7 @@ const routes = require('./routes');
 const mongoose = require('mongoose');
 
 
-const connectionString = 'mongodb+srv://Prog-web-project:p40Eh5DYhxRBHxwq@cluster0.mu9qf.mongodb.net/testRealData?retryWrites=true&w=majority'
+const connectionString = 'mongodb+srv://Prog-web-project:p40Eh5DYhxRBHxwq@cluster0.mu9qf.mongodb.net/WebProject?retryWrites=true&w=majority'
 
 mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true});
 const PORT = 4001;

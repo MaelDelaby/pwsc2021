@@ -62,7 +62,7 @@ const insertData = async (collection, brutData) => {
     } else if (collection === 'TauxDincidenceQuotDep') {
 
         // We first remove all the information from this collection
-        const rmRes = await removeAllData('TauxDincidenceQuotDep');
+        const rmRes = await removeCovidDataController.removeAllData('TauxDincidenceQuotDep');
         console.log(rmRes);
 
         for(let i=1; i<brutDataTab.length - 1; i++) {
