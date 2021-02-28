@@ -1,14 +1,14 @@
-import AppDrawer from './components/AppDrawer';
-import ShowHowManyCase from './components/ShowHowManyCase';
+import Router from './Router';
+
 //import SignUp from './pages/SignUp'
 
 
 function App() {
   return (
     <>
-      <AppDrawer/>
-      <ShowHowManyCase/>
-      {/* <SignUp/> */}
+      <Router/>
+      
+      
     </>
   );
 }
