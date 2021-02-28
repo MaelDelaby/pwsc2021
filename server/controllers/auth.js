@@ -1,8 +1,7 @@
 const User=require('../models/userModel');
+const jwt = require('jsonwebtoken');
 
-
-
-   const signUp=async(req,res)=>{ 
+const signUp=async(req,res)=>{
       
         let bigggestUser = await User.find().sort({id:-1}).skip(0).limit(1).exec();
         let biggestID = 0;
@@ -29,5 +28,47 @@ const User=require('../models/userModel');
             return "User added"
         });
     
-   }
-   module.exports={signUp}
+}
+
+
+
+const signIn = async(req,res)=>{
+
+    let userResult = await User.findOne({email:req.body.email}).exec();
+    const accessTokenSecret = "webproject"
+    let email =req.body.email;
+    if(userResult != undefined) {
+
+        if (req.body.passWord == userResult.passWord) {
+            const accessToken = jwt.sign({ email : userResult.email} , accessTokenSecret);
+
+
+            return {
+                status: 200,
+                success:true,
+                res_msg: "Login Successfully!",
+                token: accessToken
+
+            };
+        } else{
+            return {
+                status:403,
+                res_msg: "Incorrect account or password!",
+            };
+        }
+    }else{
+
+        return {
+            status:404,
+            res_msg:"Account does not exist!"
+        };
+    }
+
+
+
+}
+
+module.exports={
+    signUp,
+    signIn
+}

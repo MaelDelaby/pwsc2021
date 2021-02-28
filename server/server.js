@@ -24,6 +24,7 @@ db.once('open', function (){
 app.use(logger('dev'));
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
 app.use('/', routes);
 
 app.listen(PORT, function() {
