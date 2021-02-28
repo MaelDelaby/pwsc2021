@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
 
-const donneesHospitalieresSchema = new mongoose.Schema({
-  id: {
-    type: Number,
-    required: [true, 'Id is required']
-  },
+const donneesTauxDincidenceQuotDepSchema = new mongoose.Schema({
   dep: {
     type: Number,
     required: [true, 'Departement is required']
@@ -13,22 +9,20 @@ const donneesHospitalieresSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Jour is required']
   },
-  incidHosp: {
+  P: {
     type: Number,
     required: [true, 'incidHosp is required']
   },
-  incidRes: {
+  cl_age90: {
     type: Number,
-    required: [true, 'incidRes is required']
+    required: [true, 'incidRad is required']
   },
-  incidDc: {
-    type: Number,
-    required: [true, 'incidDc is required']
-  },
-  incidRad: {
+  pop: {
     type: Number,
     required: [true, 'incidRad is required']
   }
 })
 
-module.exports = donneesHospitalieresSchema
+let TauxDincidenceQuotDepModel = mongoose.model('TauxDincidenceQuotDep', donneesTauxDincidenceQuotDepSchema, 'TauxDincidenceQuotDep');
+
+module.exports=TauxDincidenceQuotDepModel;
